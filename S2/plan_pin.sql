@@ -10,6 +10,6 @@ CREATE LINK cluster.plan_pinning_link AS MYSQL
 CONFIG '{
     "host": "192.168.40.173","port":3306}' 
 CREDENTIALS '{
-    "username":"root","password":"saybi2025!"}';
+    "username":"root","password":"!"}';
     
 SET GLOBAL enable_plan_pinning = ON;

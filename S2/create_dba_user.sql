@@ -27,10 +27,10 @@ grant show metadata on *.* to 'reporting_role';
 create group 'reporting_users';
 grant role 'reporting_role' to 'reporting_users';
 
-create user '9609' identified by 'K7Ad3xhkk4'; -- ali bakir
-create user '8467' identified by 'hIQueSZuGo'; -- gonca kayma
-create user '9594' identified by 'hXCAtUW4tG'; -- simge ece aydin
-create user '9718' identified by 'uhbTNPFeeI'; -- yasemin ilgaz
+create user '9609' identified by 'K7Ad3xhkk4'; 
+create user '8467' identified by 'hIQueSZuGo'; 
+create user '9594' identified by 'hXCAtUW4tG'; 
+create user '9718' identified by 'uhbTNPFeeI'; 
 ;
 
 grant group 'reporting_users' to '9609';

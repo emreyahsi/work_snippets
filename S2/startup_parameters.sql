@@ -53,9 +53,9 @@ select @@columnstore_flush_bytes;
 
 detach database SAY_DWH_HIST;
 
-attach database SAY_DWH_HIST ON S3 'singlestore/SAY_DWH_HIST'
+attach database SAY_DWH_HIST ON S3 'singlestore/'
 CONFIG '{"endpoint_url":"http://192.168.41.157"}'
-CREDENTIALS '{"aws_access_key_id": "PSFBSAZRMGCNBMHHILGJIADHNMCPEMNLJKNFBDBIF", 
+CREDENTIALS '{"aws_access_key_id": "", 
               "aws_secret_access_key": "3B8D15DA9bdc4f2c+c572+F54EBC542be1c3dcNOIM"}';
 
 
