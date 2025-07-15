@@ -1,0 +1,1 @@
+select user_name,client_hostname,'select close_session('''||session_id||''');' from sessions;
