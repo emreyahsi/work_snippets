@@ -1,0 +1,7 @@
+{
+   "connectionName": "vsunny",
+   "driverName": "com.vertica.jdbc.Driver",
+   "password": "",
+   "url": "jdbc:vertica://172.12.2.9:5433/vsunny?ConnectionLoadBalance=true",
+   "username": "dbadmin"
+}
