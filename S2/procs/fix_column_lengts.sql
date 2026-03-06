@@ -543,7 +543,7 @@ if UPPER(script_rec.original_type) in (
     'LONGTEXT'
 ) then v_column_list = CONCAT(
     v_column_list,
-    ' /* Original: ' || script_rec.original_column_type || ', Max Size: ' || script_rec.max_octet_length || ' bytes */'
+    ' /* Original: ' || script_rec.original_column_type || ', Max Size: ' || script_rec.max_octet_length: > bigint || ' bytes */'
 );
 
 elseif UPPER(script_rec.original_type) in (
