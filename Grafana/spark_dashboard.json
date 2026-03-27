@@ -17,7 +17,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 39,
+  "id": 34,
   "links": [],
   "panels": [
     {
@@ -33,7 +33,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -68,7 +68,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.2.2+security-01",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "expr": "count(count by (job_base) (label_replace(kube_pod_status_phase{namespace=~\"$namespace\",pod=~\".*-exec-.*\",phase=\"Running\"},\"job_base\",\"$1\",\"pod\",\"^(.*)-[^-]+-exec-[^-]+$\")))",
@@ -112,6 +112,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -127,7 +128,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -153,10 +154,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "expr": "count by (namespace) (count by (namespace, job_base) (label_replace(kube_pod_status_phase{namespace=~\"$namespace\",pod=~\".*-exec-.*\",phase=\"Running\"},\"job_base\",\"$1\",\"pod\",\"^(.*)-[^-]+-exec-[^-]+$\")))",
@@ -166,20 +169,6 @@
       ],
       "title": "Running Jobs by Namespace",
       "type": "timeseries"
-    },
-    {
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 6
-      },
-      "id": 6,
-      "libraryPanel": {
-        "name": "Executor Count (Shared)",
-        "uid": "bf9j3winczlkwe"
-      },
-      "title": "Executor Count"
     },
     {
       "datasource": {
@@ -216,6 +205,120 @@
               "type": "linear"
             },
             "showPoints": "auto",
+            "showValues": false,
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "count by (namespace) (\r\n  kube_pod_status_phase{\r\n    namespace=~\"$namespace\",\r\n    pod=~\".*-exec-.*\",\r\n    phase=\"Running\"\r\n  }\r\n)",
+          "instant": false,
+          "legendFormat": "{{namespace}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "count (\r\n  kube_pod_status_phase{\r\n    namespace=~\"$namespace\",\r\n    pod=~\".*-exec-.*\",\r\n    phase=\"Running\"\r\n  }\r\n)",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Total-Executor-Count",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Executor Count",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "default": true,
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "showValues": false,
             "spanNulls": false,
             "stacking": {
               "group": "A",
@@ -237,7 +340,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -252,7 +355,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 3,
       "options": {
@@ -263,10 +366,12 @@
           "showLegend": true
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -294,7 +399,7 @@
           "refId": "A"
         }
       ],
-      "title": "Running Jobs (parsed by job base)",
+      "title": "Executor Count",
       "type": "timeseries"
     },
     {
@@ -310,6 +415,9 @@
             "cellOptions": {
               "type": "auto"
             },
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -318,7 +426,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -358,23 +466,15 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 24
       },
       "id": 7,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.2.2+security-01",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -444,6 +544,9 @@
             "cellOptions": {
               "type": "auto"
             },
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -451,7 +554,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -466,22 +570,14 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 34
       },
       "id": 4,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true
       },
-      "pluginVersion": "11.2.2+security-01",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "expr": "kube_pod_status_phase{namespace=~\"$namespace\",pod=~\".*-exec-.*\",phase=\"Running\"}",
@@ -509,25 +605,23 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "big-data-ha",
-          "value": "big-data-ha"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "prometheus"
         },
         "definition": "label_values(kube_namespace_status_phase{job=\"kube-state-metrics\", namespace=~\"^.*-(ha|kyuubi)$\"},namespace)",
-        "hide": 0,
         "includeAll": true,
-        "multi": false,
         "name": "namespace",
         "options": [],
         "query": {
@@ -537,7 +631,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
@@ -549,8 +642,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Spark Jobs – Parsed by Job Base",
-  "uid": "spark-job-base-dashboard",
-  "version": 25,
-  "weekStart": ""
+  "title": "Spark Jobs",
+  "uid": "spark",
+  "version": 1
 }
